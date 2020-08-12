@@ -28,7 +28,7 @@ var fileInput = document.getElementById("csv");
 
       const loop = async (lines,output) => {
         var x;
-	for(x = 1; x < lines.length; x++) {
+	for(x = 1; x < lines.length; x+2) {
           links.push(lines[x]);
           if(lines[x].substring(lines[x].lastIndexOf('/')) == lines[x-1].substring(lines[x-1].lastIndexOf('/'))){
           
