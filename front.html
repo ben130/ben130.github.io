@@ -34,7 +34,7 @@ var fileInput = document.getElementById("csv");
           
           }
           else{
-          	output.body += lines[x].substring(lines[x].lastIndexOf('/')) + '<br>';
+          	output.body.innerHTML += lines[x].substring(lines[x].lastIndexOf('/')) + '<br>';
           
           }
         }
