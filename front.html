@@ -1,43 +1,55 @@
-  
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<title>CSS Website Layout</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  margin: 0;
-}
-
-/* Style the header */
-.header {
-  background-color: #DCDCDC;
-  padding: 20px;
-  text-align: center;
-  width: auto;
-}
-h1 {
-  color: white;
-}
-.div1 {
-  border-radius: 30px;
-  padding: 20px; 
-  width: auto;
-  height: 150px;  
-  border: 5px solid #DCDCDC;
-  text-align: center;
-  margin-top: 30px;
-}
-</style>
+<title>Page Title</title>
 </head>
 <body>
+<p>Select local CSV File:</p>
+<input id="csv" type="file">
 
-<div class="header">
-  <h1>Tickle Weiiird</h1>
-</div>
+<output id="out">
+    file contents will appear here
+</output>
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
 
-<div class="div1">Ummm Hellloooooo I miss you and I can't wait for this weekend!!! Also if it wasn't already clear, tickle weiiiiiiiiirrddddd. love you</div>
+
+<script>
+
+var links = [];
+var fileInput = document.getElementById("csv");
+
+  readFile = function() {
+    var reader = new FileReader();
+
+    reader.onload = function() {
+      let lines = reader.result.split(/[\n,]+/);
+      let output = document.querySelector('#out');
+
+      const loop = async (lines,output) => {
+        var x;
+	for(x = 1; x < lines.length; x++) {
+          links.push(lines[x]);
+          if(lines[x].substring(lines[x].lastIndexOf('/')) == lines[x-1].substring(lines[x-1].lastIndexOf('/'))){
+          
+          }
+          else{
+          	output.innerHTML += lines[x].substring(lines[x].lastIndexOf('/')) + '<br>';
+          
+          }
+        }
+      }
+      loop(lines,output);
+    };
+    // start reading the file. When it is done, calls the onload event defined above.
+    reader.readAsBinaryString(fileInput.files[0]);
+  };
+fileInput.addEventListener('change', readFile);
+
+
+
+</script>
 
 </body>
 </html>
+
